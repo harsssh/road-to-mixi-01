@@ -2,11 +2,13 @@ package main
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/labstack/echo/v4"
 	"net/http"
 	"problem1/configs"
 	"strconv"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
@@ -19,6 +21,8 @@ func main() {
 	defer db.Close()
 
 	e := echo.New()
+
+    e.Use(middleware.Logger())
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "minimal_sns_app")
