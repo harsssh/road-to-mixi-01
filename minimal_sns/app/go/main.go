@@ -22,7 +22,7 @@ func main() {
 
 	e := echo.New()
 
-    e.Use(middleware.Logger())
+	e.Use(middleware.Logger())
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "minimal_sns_app")
